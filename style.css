@@ -1,0 +1,588 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.wedding-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Background Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.8), transparent);
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out;
+    opacity: 0.6;
+}
+
+.particle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+.particle:nth-child(3) { top: 50%; left: 5%; animation-delay: 4s; }
+.particle:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 6s; }
+.particle:nth-child(5) { bottom: 10%; left: 50%; animation-delay: 8s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-30px) translateX(15px); }
+}
+
+/* Card Wrapper */
+.card-wrapper {
+    position: relative;
+    z-index: 10;
+    perspective: 1000px;
+}
+
+/* Scratch Cover */
+.scratch-cover {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.3);
+    overflow: hidden;
+    cursor: crosshair;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scratch-cover canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: crosshair;
+}
+
+.scratch-text {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    color: #8b4513;
+    pointer-events: none;
+}
+
+.scratch-text h1 {
+    font-size: 3.5em;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.scratch-text p {
+    font-size: 1.3em;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+}
+
+/* Main Wedding Card */
+.wedding-card {
+    background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 50%, #fff5e6 100%);
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+    animation: cardReveal 0.8s ease-out;
+}
+
+@keyframes cardReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Card Header */
+.card-header {
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.05) 10px,
+        rgba(255, 255, 255, 0.05) 20px
+    );
+}
+
+.header-decoration {
+    position: relative;
+    z-index: 2;
+}
+
+.flower {
+    display: inline-block;
+    font-size: 2em;
+    margin: 0 20px;
+    animation: bloom 3s ease-in-out infinite;
+}
+
+.flower:nth-child(1) { animation-delay: 0s; }
+.flower:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes bloom {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(10deg); }
+}
+
+.main-title {
+    font-size: 2.8em;
+    color: #8b4513;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+}
+
+/* Events Container */
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+.event-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+    border-left: 5px solid #ffd700;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideInCard 0.6s ease-out forwards;
+}
+
+.event-card:nth-child(1) { animation-delay: 0.1s; }
+.event-card:nth-child(2) { animation-delay: 0.2s; }
+.event-card:nth-child(3) { animation-delay: 0.3s; }
+.event-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInCard {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.1), transparent);
+    pointer-events: none;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.25);
+}
+
+.event-card:hover .event-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.event-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.event-card h2 {
+    color: #8b4513;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.event-date {
+    color: #d4af37;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.event-time {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+}
+
+.event-location {
+    color: #8b4513;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.event-description {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+/* Countdown Section */
+.countdown-section {
+    text-align: center;
+    padding: 50px 30px;
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-section h3 {
+    color: #8b4513;
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.countdown-item {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.countdown-item:nth-child(1) { animation-delay: 0s; }
+.countdown-item:nth-child(2) { animation-delay: 0.2s; }
+.countdown-item:nth-child(3) { animation-delay: 0.4s; }
+.countdown-item:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.countdown-value {
+    display: block;
+    font-size: 2.5em;
+    font-weight: 900;
+    color: #d4af37;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-label {
+    display: block;
+    font-size: 0.9em;
+    color: #8b4513;
+    font-weight: 600;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Blessing Section */
+.blessing-section {
+    padding: 50px 30px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+.blessing-section h3 {
+    color: #8b4513;
+    font-size: 2.2em;
+    margin-bottom: 35px;
+    font-weight: 800;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.blessing-messages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.blessing-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+    border-top: 4px solid #ffd700;
+    position: relative;
+    animation: fadeInBlessing 0.8s ease-out forwards;
+}
+
+.blessing-card:nth-child(1) { animation-delay: 0.1s; }
+.blessing-card:nth-child(2) { animation-delay: 0.2s; }
+.blessing-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInBlessing {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.blessing-card p {
+    color: #8b4513;
+    font-size: 1.1em;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.blessing-card span {
+    color: #d4af37;
+    font-size: 0.9em;
+    font-weight: 600;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Confetti Container */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.confetti {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* RSVP Section */
+.rsvp-section {
+    padding: 40px 30px;
+    text-align: center;
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
+    position: relative;
+}
+
+.rsvp-section h3 {
+    color: #8b4513;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.rsvp-section p {
+    color: #8b4513;
+    font-size: 1em;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Card Footer */
+.card-footer {
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
+    padding: 30px;
+    text-align: center;
+    color: #ffd700;
+    font-size: 1.3em;
+    font-style: italic;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Music Toggle Button */
+.music-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+    border: 3px solid #8b4513;
+    font-size: 1.8em;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+}
+
+.music-toggle:active {
+    transform: scale(0.95);
+}
+
+.music-toggle.playing {
+    animation: musicPulse 0.6s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
+    50% { box-shadow: 0 5px 30px rgba(212, 175, 55, 0.8); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .scratch-cover {
+        height: 400px;
+    }
+
+    .scratch-text h1 {
+        font-size: 2.2em;
+    }
+
+    .scratch-text p {
+        font-size: 1em;
+    }
+
+    .main-title {
+        font-size: 1.8em;
+    }
+
+    .events-container {
+        grid-template-columns: 1fr;
+        padding: 25px 15px;
+    }
+
+    .countdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blessing-messages {
+        grid-template-columns: 1fr;
+    }
+
+    .countdown-section h3,
+    .blessing-section h3 {
+        font-size: 1.6em;
+    }
+
+    .music-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.4em;
+    }
+
+    .card-header {
+        padding: 25px 15px;
+    }
+
+    .flower {
+        font-size: 1.5em;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scratch-cover {
+        height: 300px;
+    }
+
+    .scratch-text h1 {
+        font-size: 1.8em;
+    }
+
+    .main-title {
+        font-size: 1.4em;
+    }
+
+    .event-card {
+        padding: 20px;
+    }
+
+    .event-icon {
+        font-size: 2.5em;
+    }
+
+    .countdown {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .countdown-value {
+        font-size: 2em;
+    }
+
+    .countdown-section h3,
+    .blessing-section h3 {
+        font-size: 1.3em;
+    }
+}
