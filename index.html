@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wedding-container">
+        <!-- Background Animation -->
+        <div class="background-animation">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Main Wedding Card -->
+        <div class="card-wrapper">
+            <!-- Cover Section with Scratch Effect -->
+            <div class="scratch-cover" id="scratchCover">
+                <canvas id="scratchCanvas"></canvas>
+                <div class="scratch-text">
+                    <h1>✨ खुशियों का पल ✨</h1>
+                    <p>Scratch to Reveal Magic</p>
+                </div>
+            </div>
+
+            <!-- Hidden Content (Revealed after scratch) -->
+            <div class="wedding-card" id="weddingCard" style="display: none;">
+                <!-- Header -->
+                <div class="card-header">
+                    <div class="header-decoration">
+                        <span class="flower">🌹</span>
+                        <h1 class="main-title">Together Forever</h1>
+                        <span class="flower">🌹</span>
+                    </div>
+                </div>
+
+                <!-- Event Sections -->
+                <div class="events-container">
+                    <!-- Haldi Section -->
+                    <div class="event-card haldi-card" data-event="haldi">
+                        <div class="event-icon">💛</div>
+                        <h2>Haldi Ceremony</h2>
+                        <p class="event-date">25th November 2024</p>
+                        <p class="event-time">04:00 PM - 07:00 PM</p>
+                        <p class="event-location">📍 Grand Palace Banquet Hall</p>
+                        <p class="event-description">Golden moments of joy and celebration</p>
+                    </div>
+
+                    <!-- Sangeet Section -->
+                    <div class="event-card sangeet-card" data-event="sangeet">
+                        <div class="event-icon">🎵</div>
+                        <h2>Sangeet Ceremony</h2>
+                        <p class="event-date">26th November 2024</p>
+                        <p class="event-time">06:00 PM - 10:00 PM</p>
+                        <p class="event-location">📍 Grand Palace Banquet Hall</p>
+                        <p class="event-description">Music, dance, and divine blessings</p>
+                    </div>
+
+                    <!-- Wedding Section -->
+                    <div class="event-card wedding-card-event" data-event="wedding">
+                        <div class="event-icon">💍</div>
+                        <h2>Wedding Ceremony</h2>
+                        <p class="event-date">27th November 2024</p>
+                        <p class="event-time">07:00 PM - 10:00 PM</p>
+                        <p class="event-location">📍 Sacred Temple Grounds</p>
+                        <p class="event-description">Two souls unite in eternal bond</p>
+                    </div>
+
+                    <!-- Reception Section -->
+                    <div class="event-card reception-card" data-event="reception">
+                        <div class="event-icon">🎉</div>
+                        <h2>Reception</h2>
+                        <p class="event-date">27th November 2024</p>
+                        <p class="event-time">11:00 PM - 03:00 AM</p>
+                        <p class="event-location">📍 Grand Palace Banquet Hall</p>
+                        <p class="event-description">Celebrate with food, dance, and joy</p>
+                    </div>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-section">
+                    <h3>🕰️ Big Day Coming In</h3>
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="days">0</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="hours">0</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="minutes">0</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="seconds">0</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blessing Section -->
+                <div class="blessing-section">
+                    <h3>🙏 Blessings & Wishes</h3>
+                    <div class="blessing-messages">
+                        <div class="blessing-card bless-1">
+                            <p>"May your love bloom forever like flowers in spring"</p>
+                            <span>- Family & Friends</span>
+                        </div>
+                        <div class="blessing-card bless-2">
+                            <p>"Together you are stronger, wiser, better"</p>
+                            <span>- With Love</span>
+                        </div>
+                        <div class="blessing-card bless-3">
+                            <p>"May every moment be filled with joy and laughter"</p>
+                            <span>- Our Wishes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confetti Container -->
+                <div id="confettiContainer" class="confetti-container"></div>
+
+                <!-- RSVP Section -->
+                <div class="rsvp-section">
+                    <h3>Kindly RSVP</h3>
+                    <p>By: 20th November 2024</p>
+                    <p>📱 +91-XXXXXXXXXX</p>
+                    <p>📧 weddings@royalpg.com</p>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer">
+                    <p>"Two hearts, one love, forever journey"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Music Toggle -->
+        <button id="musicToggle" class="music-toggle" title="Toggle Music">🎵</button>
+
+        <!-- Audio Element -->
+        <audio id="backgroundMusic" loop>
+            <source src="https://assets.mixkit.co/active_storage/sfx/2727/2727-preview.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
